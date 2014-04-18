@@ -9,6 +9,19 @@ describe User::AppliancesController do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
+  describe "GET 'index'" do
+    before do
+      allow(user).to receive(:appliances).and_return([appliance])
+      allow(Appliance).to receive(:all).and_return(appliance)
+      get :index
+    end
+    it { should respond_with(:ok) }
+    it { expect(user).to have_received(:appliances) }
+    it { expect(Appliance).to have_received(:all) }
+    it { assigns(:user_appliance_ids).should == [appliance.id] }
+    it { assigns(:appliances).should == appliance }
+  end
+
   describe "POST 'create'" do
     context "success" do
       before do

@@ -1,5 +1,11 @@
 class User::AppliancesController < ApplicationController
 
+  def index
+    @user_appliance_ids = current_user.appliances.map(&:id)
+    @appliances = Appliance.all
+    render json: @appliances, status: :ok, user_appliance_ids: @user_appliance_ids
+  end
+
   def create
     @appliance = Appliance.find(appliance_params[:id])
     current_user.users_appliances.new(appliance_id: @appliance.id)
