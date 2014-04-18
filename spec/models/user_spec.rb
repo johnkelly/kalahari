@@ -3,6 +3,11 @@ require 'spec_helper'
 describe User do
   let(:user) { FactoryGirl.build(:user) }
 
+  describe "associations" do
+    it { should have_many(:users_appliances).dependent(:destroy) }
+    it { should have_many(:appliances).through(:users_appliances) }
+  end
+
   describe "validations" do
     it { should validate_presence_of :email }
     it { should validate_presence_of :auth_token }

@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417012741) do
+ActiveRecord::Schema.define(version: 20140418052410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "appliances", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "kind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "email",                       null: false
@@ -26,5 +32,14 @@ ActiveRecord::Schema.define(version: 20140417012741) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users_appliances", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid "user_id"
+    t.uuid "appliance_id"
+  end
+
+  add_index "users_appliances", ["appliance_id"], name: "index_users_appliances_on_appliance_id", using: :btree
+  add_index "users_appliances", ["user_id", "appliance_id"], name: "index_users_appliances_on_user_id_and_appliance_id", unique: true, using: :btree
+  add_index "users_appliances", ["user_id"], name: "index_users_appliances_on_user_id", using: :btree
 
 end
