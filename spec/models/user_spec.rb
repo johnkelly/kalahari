@@ -6,6 +6,7 @@ describe User do
   describe "associations" do
     it { should have_many(:users_appliances).dependent(:destroy) }
     it { should have_many(:appliances).through(:users_appliances) }
+    it { should have_many(:ingredients).dependent(:destroy) }
   end
 
   describe "validations" do

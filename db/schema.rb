@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140419061459) do
+ActiveRecord::Schema.define(version: 20140419062226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(version: 20140419061459) do
   end
 
   add_index "foods", ["name"], name: "index_foods_on_name", unique: true, using: :btree
+
+  create_table "ingredients", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.decimal  "quantity",       null: false
+    t.uuid     "food_id",        null: false
+    t.uuid     "measurement_id", null: false
+    t.uuid     "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ingredients", ["food_id"], name: "index_ingredients_on_food_id", using: :btree
+  add_index "ingredients", ["measurement_id"], name: "index_ingredients_on_measurement_id", using: :btree
+  add_index "ingredients", ["user_id", "food_id"], name: "index_ingredients_on_user_id_and_food_id", unique: true, using: :btree
+  add_index "ingredients", ["user_id"], name: "index_ingredients_on_user_id", using: :btree
 
   create_table "measurements", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"

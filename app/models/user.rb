@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :users_appliances, dependent: :destroy
   has_many :appliances, through: :users_appliances
+  has_many :ingredients, dependent: :destroy
 
   validates :email, presence: true, format: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/, uniqueness: true
   validates :first_name, presence: true
