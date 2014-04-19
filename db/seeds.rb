@@ -1,8 +1,10 @@
 require 'csv'
 
 Appliance.destroy_all
+Ingredient.destroy_all
 Measurement.destroy_all
 Food.destroy_all
+User.destroy_all
 
 puts "Database Cleared"
 
@@ -26,3 +28,18 @@ CSV.foreach("#{Rails.root.to_s}/db/csv/food.csv") do |row|
 end
 
 puts "Food seeded"
+
+user = FactoryGirl.create(:user, email: "test@example.com")
+
+puts "User created"
+
+measurements = Measurement.all
+
+Food.all.shuffle.take(200).each do |food|
+  FactoryGirl.create(:ingredient, user_id: user.id, measurement_id: measurements.sample.id,
+                     food_id: food.id, quantity: rand(100))
+
+end
+
+puts "Ingredients created"
+
