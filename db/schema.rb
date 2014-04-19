@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418052410) do
+ActiveRecord::Schema.define(version: 20140419055820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20140418052410) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "measurements", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "measurements", ["name"], name: "index_measurements_on_name", unique: true, using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "email",                       null: false
