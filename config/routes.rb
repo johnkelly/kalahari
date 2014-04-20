@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :user do
     resources :appliances, only: [:index, :create, :destroy]
-    resources :ingredients, only: [:index]
+    resources :ingredients, only: [:index, :create, :update, :destroy]
   end
 
   resource :session, only: [:create], controller: :session
