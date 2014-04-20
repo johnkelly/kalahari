@@ -11,7 +11,7 @@ class User::IngredientsController < ApplicationController
                                                 measurement_id: ingredient_params[:measurement_id],
                                                 quantity: ingredient_params[:quantity])
     if @ingredient.save
-      render json: { ingredient: @ingredient }, status: :created
+      render json: @ingredient, status: :created
     else
       render json: { errors: @ingredient.errors.full_messages }, status: :unprocessable_entity
     end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :measurements, only: [:index]
+
   namespace :user do
     resources :appliances, only: [:index, :create, :destroy]
     resources :ingredients, only: [:index, :create, :update, :destroy]
