@@ -6,6 +6,7 @@ describe Ingredient do
     it { should belong_to(:food) }
     it { should belong_to(:measurement) }
     it { should belong_to(:user) }
+    it { should belong_to(:meal) }
   end
 
   describe "validations" do
