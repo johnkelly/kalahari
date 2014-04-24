@@ -4,6 +4,8 @@ describe Meal do
   describe "associations" do
     it { should have_many(:ingredients).dependent(:destroy) }
     it { should have_many(:directions).dependent(:destroy) }
+    it { should have_many(:users_meals).dependent(:destroy) }
+    it { should have_many(:users).through(:users_meals) }
   end
 
   describe "validations" do

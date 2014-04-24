@@ -7,6 +7,8 @@ describe User do
     it { should have_many(:users_appliances).dependent(:destroy) }
     it { should have_many(:appliances).through(:users_appliances) }
     it { should have_many(:ingredients).dependent(:destroy) }
+    it { should have_many(:users_meals).dependent(:destroy) }
+    it { should have_many(:meals).through(:users_meals) }
   end
 
   describe "validations" do
