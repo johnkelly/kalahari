@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   resources :measurements, only: [:index]
+  resources :meals, only: [:index]
 
-  namespace :user do
-    resources :appliances, only: [:index, :create, :destroy]
-    resources :ingredients, only: [:index, :create, :update, :destroy]
-    resources :meals, only: [:index, :create, :destroy]
+  resource :user, only: [] do
+    resources :appliances, only: [:index, :create, :destroy], controller: 'user/appliances'
+    resources :ingredients, only: [:index, :create, :update, :destroy], controller: 'user/ingredients'
+    resources :meals, only: [:index, :create, :destroy], controller: 'user/meals'
   end
 
   resource :session, only: [:create], controller: :session
