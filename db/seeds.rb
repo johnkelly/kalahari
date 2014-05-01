@@ -16,9 +16,11 @@ end
 
 puts "Appliances seeded"
 
-measurements = ["ounces", "liters", "pounds", "cups", "item", "tablespoons", "teaspoons"]
-measurements.each do |measurement|
-  measurement = FactoryGirl.create(:measurement, name: measurement)
+
+CSV.foreach("#{Rails.root.to_s}/db/csv/measurements.csv") do |row|
+  measurement_name = row[0]
+  mL = row[1]
+  measurement = FactoryGirl.create(:measurement, name: measurement_name, mL: mL)
 end
 
 puts "Measurements seeded"
