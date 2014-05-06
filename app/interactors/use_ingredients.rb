@@ -2,8 +2,8 @@ class UseIngredients
   include Interactor
 
   def perform
-    meal_ingredients = users_meal.meal.ingredients
-    user_ingredients = user.ingredients
+    meal_ingredients = users_meal.meal.ingredients.includes(:food, :measurement)
+    user_ingredients = user.ingredients.includes(:food, :measurement)
 
     meal_ingredients.each do |meal_ingredient|
       user_ingredient = user_ingredients.detect{|ui| ui.food_id == meal_ingredient.food_id }
@@ -19,12 +19,13 @@ class UseIngredients
   private
 
   def reduce_quantity_or_remove_ingredient(user_ingredient, meal_ingredient)
-    user_ingredient.decrement(:quantity, meal_ingredient.quantity)
+    remaning_amount_in_mL = user_ingredient.mL - meal_ingredient.mL
 
-    if user_ingredient.quantity <= 0
+    if remaning_amount_in_mL <= 0
       user_ingredient.destroy!
     else
-      user_ingredient.save!
+      new_quantity = Measurement.convert_mL_to_measurement(remaning_amount_in_mL, user_ingredient.measurement.mL)
+      user_ingredient.update!(quantity: new_quantity)
     end
   end
 end

@@ -20,7 +20,8 @@ class ReturnIngredients
 
   def increase_quantity_or_create_ingredient(user_ingredient, meal_ingredient)
     if user_ingredient.present?
-      user_ingredient.increment!(:quantity, meal_ingredient.quantity)
+      new_amount = Measurement.convert_mL_to_measurement(meal_ingredient.mL, user_ingredient.measurement.mL)
+      user_ingredient.increment!(:quantity, new_amount)
     else
       user.ingredients.create!(food_id: meal_ingredient.food_id,
                                measurement_id: meal_ingredient.measurement_id,

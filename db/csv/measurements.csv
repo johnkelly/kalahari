@@ -1,4 +1,4 @@
-#10 can,3,784.296607
+#10 can,3784.296607
 #2.5 can,946.074152
 coffee spoon,1.23223
 cubic inch,16.38706
@@ -7,10 +7,10 @@ dash,0.308058
 deciliter,100
 drop,0.064854
 fluid dram,3.696691
-gallon,3,784.296607
+gallon,3784.296607
 gill,118.259269
 gram,1
-item,0
+item,1
 liter,1000
 ml,1
 ounce,29.564817
