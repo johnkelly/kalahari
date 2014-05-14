@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :measurements, only: [:index]
-  resources :meals, only: [:index]
+  resources :meals, only: [:index, :show]
 
   resource :user, only: [] do
     resources :appliances, only: [:index, :create, :destroy], controller: 'user/appliances'
