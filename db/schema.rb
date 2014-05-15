@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501045740) do
+ActiveRecord::Schema.define(version: 20140515051504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 20140501045740) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "meals_appliances", force: true do |t|
+    t.uuid "meal_id"
+    t.uuid "appliance_id"
+  end
+
+  add_index "meals_appliances", ["appliance_id"], name: "index_meals_appliances_on_appliance_id", using: :btree
+  add_index "meals_appliances", ["meal_id", "appliance_id"], name: "index_meals_appliances_on_meal_id_and_appliance_id", unique: true, using: :btree
+  add_index "meals_appliances", ["meal_id"], name: "index_meals_appliances_on_meal_id", using: :btree
 
   create_table "measurements", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "name"

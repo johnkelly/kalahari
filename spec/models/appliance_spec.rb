@@ -5,6 +5,8 @@ describe Appliance do
   describe "associations" do
     it { should have_many(:users_appliances).dependent(:destroy) }
     it { should have_many(:users).through(:users_appliances) }
+    it { should have_many(:meals_appliances).dependent(:destroy) }
+    it { should have_many(:meals).through(:meals_appliances) }
   end
 
   describe "validations" do
