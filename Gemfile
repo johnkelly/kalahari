@@ -11,6 +11,10 @@ gem 'active_model_serializers', '~> 0.8.1'
 gem 'interactor-rails', '~> 1.0.1'
 gem 'factory_girl_rails', '~> 4.4.1'
 
+group :production do
+  gem 'rails_12factor', '~> 0.0.2'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'shoulda-matchers', '~> 2.6'
