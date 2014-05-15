@@ -89,3 +89,23 @@ CSV.foreach("#{Rails.root.to_s}/db/csv/meal_directions.csv") do |row|
 end
 
 puts "Meal directions created"
+
+current_id = -1
+current_meal = nil
+
+CSV.foreach("#{Rails.root.to_s}/db/csv/meal_appliances.csv") do |row|
+  id = row[0]
+  meal_name = row[1]
+  appliance_name = row[2]
+
+  appliance = Appliance.where(kind: appliance_name).first
+
+  unless current_id == id
+    current_meal = Meal.where(name: meal_name).first
+    current_id = id
+  end
+
+  FactoryGirl.create(:meals_appliance, meal_id: current_meal.id, appliance_id: appliance.id)
+end
+
+puts "Meal appliances created"
