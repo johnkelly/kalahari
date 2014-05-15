@@ -3,8 +3,7 @@ class GetAvailableMeals
 
   def perform
     context[:available_meals] = meals.select do |meal|
-      meal_ingredients = meal.ingredients
-      has_correct_ingredients_and_quantities?(meal_ingredients)
+      has_appliances_and_ingredients_and_quantities?(meal)
     end
   end
 
@@ -13,24 +12,24 @@ class GetAvailableMeals
     context[:user_ingredients] ||= user.ingredients.includes(:measurement)
     context[:user_food_ids] ||= user_ingredients.map(&:food_id)
     context[:meals] ||= Meal.all.includes(ingredients: [:measurement, :food])
+    context[:user_appliance_ids] ||= user.appliances.map(&:id)
   end
 
   private
 
-  def find_available_meals
-    meals.select do |meal|
-      meal_ingredients = meal.ingredients
-      has_correct_ingredients_and_quantities?(meal_ingredients)
-    end
-  end
-
-  def has_correct_ingredients_and_quantities?(meal_ingredients)
-    user_has_all_ingredients?(meal_ingredients) && has_correct_quantities?(meal_ingredients)
+  def has_appliances_and_ingredients_and_quantities?(meal)
+    meal_ingredients = meal.ingredients
+    user_has_all_appliances?(meal) && user_has_all_ingredients?(meal_ingredients) && has_correct_quantities?(meal_ingredients)
   end
 
   def user_has_all_ingredients?(meal_ingredients)
     meal_food_ids = meal_ingredients.map(&:food_id)
     (meal_food_ids - user_food_ids).blank?
+  end
+
+  def user_has_all_appliances?(meal)
+    meal_appliance_ids = meal.appliances.map(&:id)
+    (meal_appliance_ids - user_appliance_ids).blank?
   end
 
   def has_correct_quantities?(meal_ingredients)
