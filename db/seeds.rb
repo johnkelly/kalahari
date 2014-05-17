@@ -16,7 +16,6 @@ end
 
 puts "Appliances seeded"
 
-
 CSV.foreach("#{Rails.root.to_s}/db/csv/measurements.csv") do |row|
   measurement_name = row[0]
   mL = row[1]
@@ -33,8 +32,14 @@ end
 puts "Food seeded"
 
 user = FactoryGirl.create(:user, email: "test@example.com")
+meal_user = FactoryGirl.create(:user, email: "eat@example.com", first_name: "Eater")
 
-puts "User created"
+puts "Users created"
+
+Appliance.find_each do |appliance|
+  FactoryGirl.create(:users_appliance, user_id: meal_user.id, appliance_id: appliance.id)
+end
+puts "Users' appliances created"
 
 measurements = Measurement.all
 
@@ -64,9 +69,19 @@ CSV.foreach("#{Rails.root.to_s}/db/csv/meal_ingredients.csv") do |row|
   food = Food.where(name: food_name).first_or_create!
   measurement = Measurement.where(name: measurement_name).first_or_create!
 
-  FactoryGirl.create(:ingredient, meal_id: current_meal.id,
-                     user_id: nil, food_id: food.id,
-                     quantity: quantity, measurement_id: measurement.id)
+  meal_ingredient = FactoryGirl.create(:ingredient, meal_id: current_meal.id,
+                                       user_id: nil, food_id: food.id,
+                                       quantity: quantity, measurement_id: measurement.id)
+
+  meal_user_ingredient = meal_user.ingredients.where(food_id: food.id).first
+  if meal_user_ingredient.present?
+    new_amount = Measurement.convert_mL_to_measurement(meal_ingredient.mL, meal_user_ingredient.measurement.mL)
+    meal_user_ingredient.increment!(:quantity, new_amount)
+  else
+    FactoryGirl.create(:ingredient, meal_id: nil,
+                       user_id: meal_user.id, food_id: food.id,
+                       quantity: quantity, measurement_id: measurement.id)
+  end
 end
 
 puts "Meals with Ingredients created"

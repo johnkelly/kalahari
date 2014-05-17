@@ -16,6 +16,7 @@ describe Ingredient do
     it { should validate_presence_of :food_id }
     it { should validate_presence_of :measurement_id }
     # it { should validate_uniqueness_of(:food_id).scoped_to(:user_id) }
+    # it { should validate_uniqueness_of(:food_id).scoped_to(:meal_id) }
     it { should validate_numericality_of(:quantity).is_greater_than_or_equal_to(0) }
   end
 
