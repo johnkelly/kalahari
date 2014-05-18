@@ -19,18 +19,18 @@
 3,Baked Lemon Pepper Salmon,Mayonnaise,1.5,tablespoon
 3,Baked Lemon Pepper Salmon,Yello Miso Paste,1,tablespoon
 3,Baked Lemon Pepper Salmon,Dijon Mustard,2,teaspoon
-3,Baked Lemon Pepper Salmon,Cayenne Pepper,1,pinch
+3,Baked Lemon Pepper Salmon,Ground Cayenne Pepper,1,pinch
 3,Baked Lemon Pepper Salmon,Salmon,16,ounce
 3,Baked Lemon Pepper Salmon,Salt,1,item
 4,Turkey Chili,Ancho Chile Powder,.25,cup
 4,Turkey Chili,Paprika,1,tablespoon
-4,Turkey Chili,Cumin,1,tablespoon
+4,Turkey Chili,Ground Cumin,1,tablespoon
 4,Turkey Chili,Salt,2.5,tablespoon
 4,Turkey Chili,Chipotle Pepper,1.5,teaspoon
 4,Turkey Chili,Oregano,1,teaspoon
 4,Turkey Chili,Unsweetened Cocoa Powder,1,teaspoon
 4,Turkey Chili,Black Pepper,1,teaspoon
-4,Turkey Chili,Cayenne Pepper,.25,teaspoon
+4,Turkey Chili,Ground Cayenne Pepper,.25,teaspoon
 4,Turkey Chili,Cinnamon,.125,teaspoon
 4,Turkey Chili,Olive Oil,1,tablespoon
 4,Turkey Chili,Onion,1,item
@@ -50,4 +50,27 @@
 5,Sloppy Joe,Worcestershire Sauce,1,dash
 5,Sloppy Joe,Salt,1.5,teaspoon
 5,Sloppy Joe,Black Pepper,1.5,teaspoon
-5,Sloppy Joe,Cayenne Pepper,1,pinch
+5,Sloppy Joe,Ground Cayenne Pepper,1,pinch
+6,Chicken Piccata,Chicken Breast,4,item
+6,Chicken Piccata,Ground Cayenne Pepper,1,item
+6,Chicken Piccata,Black Pepper,1,item
+6,Chicken Piccata,Salt,1,item
+6,Chicken Piccata,Flour,.25,pound
+6,Chicken Piccata,Olive Oil,2,tablespoon
+6,Chicken Piccata,Capers,1,tablespoon
+6,Chicken Piccata,White Wine,.5,cup
+6,Chicken Piccata,Lemon Juice,.25,cup
+6,Chicken Piccata,Water,.25,cup
+6,Chicken Piccata,Unsalted Butter,3,tablespoon
+6,Chicken Piccata,Parsley,2,tablespoon
+7,Baked Baby Back Ribs,Ancho Chile Powder,.5,cup
+7,Baked Baby Back Ribs,White Sugar,.25,cup
+7,Baked Baby Back Ribs,Brown Sugar,.25,cup
+7,Baked Baby Back Ribs,Salt,.25,cup
+7,Baked Baby Back Ribs,Black Pepper,2,tablespoon
+7,Baked Baby Back Ribs,Ground Cumin,1,tablespoon
+7,Baked Baby Back Ribs,Dry Mustard,1,teaspoon
+7,Baked Baby Back Ribs,Ground Cayenne Pepper,1,teaspoon
+7,Baked Baby Back Ribs,Ground Chipotle Pepper,.5,teaspoon
+7,Baked Baby Back Ribs,Baby Back Pork Ribs Rack,1,item
+7,Baked Baby Back Ribs,Barbeque Sauce,1,cup
