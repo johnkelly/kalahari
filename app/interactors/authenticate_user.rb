@@ -6,7 +6,7 @@ class AuthenticateUser
     if user && user.authenticate(password)
       context[:user] = user
     else
-      fail!(errors: ["Email or password is invalid"])
+      fail!(errors: ["Your email or password is incorrect."])
     end
   end
 
