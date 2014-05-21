@@ -9,7 +9,7 @@ User.destroy_all
 
 puts "Database Cleared"
 
-appliances = ["oven", "microwave", "refrigerator", "freezer", "stove"]
+appliances = ["Oven", "Microwave", "Refrigerator", "Freezer", "Stove", "Tap Water", "Blender", "Food Processor", "Waffle Iron", "Pizza Stone"]
 appliances.each do |appliance|
   appliance = FactoryGirl.create(:appliance, kind: appliance)
 end

@@ -22,7 +22,7 @@ describe AuthenticateUser do
         interactor.perform
       end
       it { expect(User).to have_received(:where) }
-      it { expect(interactor.context[:errors]).to eq(["Email or password is invalid"]) }
+      it { expect(interactor.context[:errors]).to eq(["Your email or password is incorrect."]) }
     end
   end
 end
