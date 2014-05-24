@@ -37,13 +37,11 @@
 4,Turkey Chili,Ground Turkey,2.5,pound
 4,Turkey Chili,Garlic Clove,3,item
 4,Turkey Chili,Tomato Puree,1,cup
-4,Turkey Chili,Water,2,cup
 4,Turkey Chili,Pinto Pean,24,ounce
 5,Sloppy Joe,Ground Beef,1.5,pound
 5,Sloppy Joe,Onion,.5,item
 5,Sloppy Joe,Garlic Clove,2,item
 5,Sloppy Joe,Green Bell Pepper,1,item
-5,Sloppy Joe,Water,2,cup
 5,Sloppy Joe,Ketchup,.75,cup
 5,Sloppy Joe,Brown Sugar,2,tablespoon
 5,Sloppy Joe,Dijon Mustard,1,teaspoon
@@ -60,7 +58,6 @@
 6,Chicken Piccata,Capers,1,tablespoon
 6,Chicken Piccata,White Wine,.5,cup
 6,Chicken Piccata,Lemon Juice,.25,cup
-6,Chicken Piccata,Water,.25,cup
 6,Chicken Piccata,Unsalted Butter,3,tablespoon
 6,Chicken Piccata,Parsley,2,tablespoon
 7,Baked Baby Back Ribs,Ancho Chile Powder,.5,cup
@@ -74,7 +71,6 @@
 7,Baked Baby Back Ribs,Ground Chipotle Pepper,.5,teaspoon
 7,Baked Baby Back Ribs,Baby Back Pork Ribs Rack,1,item
 7,Baked Baby Back Ribs,Barbeque Sauce,1,cup
-8,Cranberry and Cilantro Quinoa Salad,Water,1.5,cup
 8,Cranberry and Cilantro Quinoa Salad,Quinoa,1,cup
 8,Cranberry and Cilantro Quinoa Salad,Red Bell Pepper,.25,cup
 8,Cranberry and Cilantro Quinoa Salad,Yellow Bell Pepper,.25,cup

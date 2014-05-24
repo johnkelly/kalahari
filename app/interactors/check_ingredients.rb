@@ -37,11 +37,6 @@ class CheckIngredients
   end
 
   def has_ingredient_and_has_enough?(user_ingredient, meal_ingredient)
-    if user_ingredient.food_id == meal_ingredient.food_id
-    Rails.logger.info meal_ingredient.mL
-    Rails.logger.info user_ingredient.mL
-    end
-
     user_ingredient.food_id == meal_ingredient.food_id && user_ingredient.mL >= meal_ingredient.mL
   end
 end
