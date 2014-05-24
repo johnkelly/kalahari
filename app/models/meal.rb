@@ -7,4 +7,6 @@ class Meal < ActiveRecord::Base
   has_many :appliances, through: :meals_appliances
 
   validates :name, presence: true
+  validates :description, presence: true
+  validates :duration, presence: true, numericality: { only_integer: true, greater_than: 0 }
 end

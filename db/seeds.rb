@@ -51,20 +51,27 @@ end
 
 puts "User Ingredients created"
 
-current_id = -1
-current_meal = nil
+meals = []
+
+CSV.foreach("#{Rails.root.to_s}/db/csv/meals.csv") do |row|
+  meal_name = row[0]
+  meal_duration = row[1]
+  meal_description = row[2]
+
+  puts meal_name
+
+  meals << FactoryGirl.create(:meal, name: meal_name, duration: meal_duration, description: meal_description)
+end
+
+puts "Meals created"
 
 CSV.foreach("#{Rails.root.to_s}/db/csv/meal_ingredients.csv") do |row|
-  id = row[0]
-  meal_name = row[1]
-  food_name = row[2]
-  quantity = row[3]
-  measurement_name = row[4]
+  meal_name = row[0]
+  food_name = row[1]
+  quantity = row[2]
+  measurement_name = row[3]
 
-  unless current_id == id
-    current_meal = FactoryGirl.create(:meal, name: meal_name)
-    current_id = id
-  end
+  current_meal = meals.detect{ |meal| meal.name == meal_name }
 
   food = Food.where(name: food_name).first_or_create!
   measurement = Measurement.where(name: measurement_name).first_or_create!
@@ -84,41 +91,25 @@ CSV.foreach("#{Rails.root.to_s}/db/csv/meal_ingredients.csv") do |row|
   end
 end
 
-puts "Meals with Ingredients created"
-
-current_id = -1
-current_meal = nil
+puts "Meals Ingredients created"
 
 CSV.foreach("#{Rails.root.to_s}/db/csv/meal_directions.csv") do |row|
-  id = row[0]
-  meal_name = row[1]
-  position = row[2]
-  direction_name = row[3]
+  meal_name = row[0]
+  position = row[1]
+  direction_name = row[2]
 
-  unless current_id == id
-    current_meal = Meal.where(name: meal_name).first
-    current_id = id
-  end
-
+  current_meal = meals.detect{ |meal| meal.name == meal_name }
   FactoryGirl.create(:direction, meal_id: current_meal.id, position: position, name: direction_name)
 end
 
 puts "Meal directions created"
 
-current_id = -1
-current_meal = nil
-
 CSV.foreach("#{Rails.root.to_s}/db/csv/meal_appliances.csv") do |row|
-  id = row[0]
-  meal_name = row[1]
-  appliance_name = row[2]
+  meal_name = row[0]
+  appliance_name = row[1]
 
   appliance = Appliance.where(kind: appliance_name).first
-
-  unless current_id == id
-    current_meal = Meal.where(name: meal_name).first
-    current_id = id
-  end
+  current_meal = meals.detect{ |meal| meal.name == meal_name }
 
   FactoryGirl.create(:meals_appliance, meal_id: current_meal.id, appliance_id: appliance.id)
 end
