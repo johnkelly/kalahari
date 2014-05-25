@@ -6,10 +6,8 @@ class User::IngredientsController < ApplicationController
   end
 
   def create
-    @food = Food.where(name: ingredient_params[:food_name]).first_or_create
-    @ingredient = current_user.ingredients.new(food_id: @food.id,
-                                                measurement_id: ingredient_params[:measurement_id],
-                                                quantity: ingredient_params[:quantity])
+    @ingredient = current_user.ingredients.new(ingredient_params)
+
     if @ingredient.save
       render json: @ingredient, status: :created
     else
@@ -38,6 +36,6 @@ class User::IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredients).permit(:food_name, :measurement_id, :quantity)
+    params.require(:ingredients).permit(:food_id, :measurement_id, :quantity)
   end
 end

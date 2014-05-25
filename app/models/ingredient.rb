@@ -6,7 +6,7 @@ class Ingredient < ActiveRecord::Base
 
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :food_id, presence: true
-  validates :food_id, uniqueness: { scope: :user_id }, if: Proc.new {|i| i.user_id.present? }
+  validates :food_id, uniqueness: { scope: :user_id, message: "has already been added as one of your ingredients." }, if: Proc.new {|i| i.user_id.present? }
   validates :food_id, uniqueness: { scope: :meal_id }, if: Proc.new {|i| i.meal_id.present? }
   validates :measurement_id, presence: true
 

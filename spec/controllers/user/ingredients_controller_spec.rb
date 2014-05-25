@@ -25,16 +25,12 @@ describe User::IngredientsController do
   describe "POST 'create'" do
     context "success" do
       before do
-        allow(Food).to receive(:where).and_return(food)
-        allow(food).to receive(:first_or_create).and_return(food)
         allow(user).to receive(:ingredients).and_return(ingredient)
         allow(ingredient).to receive(:new).and_return(ingredient)
         allow(ingredient).to receive(:save).and_return(true)
-        post :create, ingredients: { food_name: "Pumpkin", measurement_id: "FAKEID", quantity: "4" }
+        post :create, ingredients: { food_id: "FAKEID", measurement_id: "FAKEID", quantity: "4" }
       end
       it { should respond_with(:created) }
-      it { expect(Food).to have_received(:where) }
-      it { expect(food).to have_received(:first_or_create) }
       it { expect(user).to have_received(:ingredients) }
       it { expect(ingredient).to have_received(:new) }
       it { expect(ingredient).to have_received(:save) }
@@ -42,16 +38,12 @@ describe User::IngredientsController do
     end
     context "error" do
       before do
-        allow(Food).to receive(:where).and_return(food)
-        allow(food).to receive(:first_or_create).and_return(food)
         allow(user).to receive(:ingredients).and_return(ingredient)
         allow(ingredient).to receive(:new).and_return(ingredient)
         allow(ingredient).to receive(:save).and_return(false)
-        post :create, ingredients: { food_name: "Pumpkin", measurement_id: "FAKEID", quantity: "4" }
+        post :create, ingredients: { food_id: "FAKEID", measurement_id: "FAKEID", quantity: "4" }
       end
       it { should respond_with(:unprocessable_entity) }
-      it { expect(Food).to have_received(:where) }
-      it { expect(food).to have_received(:first_or_create) }
       it { expect(user).to have_received(:ingredients) }
       it { expect(ingredient).to have_received(:new) }
       it { expect(ingredient).to have_received(:save) }
