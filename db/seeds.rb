@@ -9,9 +9,10 @@ User.destroy_all
 
 puts "Database Cleared"
 
-appliances = ["Oven", "Microwave", "Refrigerator", "Freezer", "Stove", "Tap Water", "Blender", "Food Processor", "Waffle Iron", "Pizza Stone"]
-appliances.each do |appliance|
-  appliance = FactoryGirl.create(:appliance, kind: appliance)
+
+CSV.foreach("#{Rails.root.to_s}/db/csv/appliances.csv") do |row|
+  kind = row[0]
+  appliance = FactoryGirl.create(:appliance, kind: kind)
 end
 
 puts "Appliances seeded"
